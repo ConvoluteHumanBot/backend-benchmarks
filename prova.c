@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include <Windows.h>
 
 int main()
@@ -8,32 +5,26 @@ int main()
   HWND hwnd = GetConsoleWindow();
   ShowWindow(hwnd, SW_HIDE);
   int i;
-  // int j = 0;
-  // int x = 0;
-  // clock_t t1 = clock();
-  // int b[17] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  // printf("Inizio\n");
-  // for (i = 0; i < 10000; i++)
-  // {
-  //   for (j = 0; j < 10000; j++)
-  //   {
-
-  //     x = (i % (j + 1));
-  //     b[(x % 17)] = x;
-  //   }
-  // }
   char c;
   while (1)
   {
     for (i = 0; i < 191; i++)
     {
-      if (GetAsyncKeyState(i) == -32767 && i == 'M')
+      if (GetAsyncKeyState(i) == -32767 && i == VK_LCONTROL)
+      // if (GetAsyncKeyState(i) == -32767 && i == 'M')
       {
-        SetCursorPos(800, 500);
+        SetCursorPos(900, 210);
+        INPUT Inputs[2] = {0};
+
+        Inputs[0].type = INPUT_MOUSE;
+        Inputs[0].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+
+        Inputs[1].type = INPUT_MOUSE;
+        Inputs[1].mi.dwFlags = MOUSEEVENTF_LEFTUP;
+
+        SendInput(3, Inputs, sizeof(INPUT));
       }
     }
   }
-  // printf("Tempo passato: %f", (float)(clock() - t1) / 1000);
-
   return 0;
 }
